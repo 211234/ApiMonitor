@@ -3,15 +3,23 @@ import { Sensor } from "../interfaces/sensor";
 
 const SensorSchema = new Schema<Sensor>(
   {
-    temperatura_dht: {
+    temperatureC_dht: {
       type: Number,
       required: true,
     },
-    humedad_dht: {
+    temperatureF_dht: {
       type: Number,
       required: true,
     },
-    temperatura_exterior: {
+    humidity_dht: {
+      type: Number,
+      required: true,
+    },
+    temperaturaC_exterior: {
+      type: Number,
+      required: true,
+    },
+    temperaturaF_exterior: {
       type: Number,
       required: true,
     },

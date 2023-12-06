@@ -1,5 +1,7 @@
 export interface Sensor {
-    temperatura_dht: number;
-    humedad_dht: number;
-    temperatura_exterior: number;
+    temperatureC_dht: number;
+    temperatureF_dht: number;
+    humidity_dht: number;
+    temperaturaC_exterior: number;
+    temperaturaF_exterior: number;
 }

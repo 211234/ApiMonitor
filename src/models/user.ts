@@ -20,6 +20,10 @@ const UserSchema = new Schema<User>(
       type: String,
       required: true,
     },
+    intervaloMinutos: {
+      type: Number,
+      required: true,
+    },
   },
   {
     versionKey: false,

@@ -35,4 +35,12 @@ const loginUser = async ({ email, password }: Auth) => {
   return data;
 };
 
-export { registerNewUser, loginUser };
+const updatePerfil = async (id: string, data: User) => {
+  const responseUser = await UserModel.findOneAndUpdate({ _id: id }, data, {
+    new: true,
+  });
+  return responseUser;
+};
+
+
+export { registerNewUser, loginUser, updatePerfil };

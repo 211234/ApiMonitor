@@ -1,13 +1,13 @@
 import { Sensor } from "../interfaces/sensor";
 import SensorModel from "../models/sensor";
 
-//import socketHandler from '../../services/registerDataSensorsServices/socketHandler';
-
-const saveSensorData = async ({ temperatura_dht, humedad_dht, temperatura_exterior }: Sensor) => {
+const saveSensorData = async ({ temperatureC_dht, temperatureF_dht,humidity_dht, temperaturaC_exterior, temperaturaF_exterior}: Sensor) => {
     const createSensorData =  await SensorModel.create({
-        temperatura_dht,
-        humedad_dht,
-        temperatura_exterior
+        temperatureC_dht, 
+        temperatureF_dht,
+        humidity_dht, 
+        temperaturaC_exterior, 
+        temperaturaF_exterior
     });
     return createSensorData;
 }
@@ -18,4 +18,3 @@ const getAllSensorData = async () => {
 }
 
 export { saveSensorData, getAllSensorData };
-

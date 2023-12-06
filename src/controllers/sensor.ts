@@ -17,7 +17,7 @@ const getAllSensorTem = async (req: Request, res: Response) => {
     const response = await getAllSensorData();
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR_GET_ITEMS");
+    handleHttp(res, "ERROR_GET_SENSOR");
   }
 };
 

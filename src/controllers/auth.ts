@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { registerNewUser, loginUser } from "../services/auth";
+import { registerNewUser, loginUser, updatePerfil } from "../services/auth";
+import { handleHttp } from "../utils/error.handle";
 
 const registerCtrl = async ({ body }: Request, res: Response) => {
   const responseUser = await registerNewUser(body);
@@ -18,4 +19,14 @@ const loginCtrl = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { loginCtrl, registerCtrl };
+const perfilCtrl = async ({ params, body }: Request, res: Response) => {
+  try {
+    const { id } = params
+    const response = await updatePerfil(id, body);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR_UPDATE")
+  }
+};
+
+export { loginCtrl, registerCtrl, perfilCtrl };

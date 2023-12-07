@@ -14,7 +14,7 @@ const getAllSensorTem = (req: RequestExt, res: Response) => {
   }
 };
 
-const getAllSensorEne = (req: RequestExt, res: Response) => {
+const getAllSensorEnergyData = (req: RequestExt, res: Response) => {
   try {
     res.send({
       data: "ESTO SOLO LO VE LAS PERSONS CON SESSION / JWT",
@@ -25,4 +25,4 @@ const getAllSensorEne = (req: RequestExt, res: Response) => {
   }
 };
 
-export { getAllSensorTem, getAllSensorEne };
+export { getAllSensorTem, getAllSensorEnergyData };

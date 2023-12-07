@@ -22,7 +22,7 @@ const UserSchema = new Schema<User>(
     },
     intervaloMinutos: {
       type: Number,
-      required: true,
+      required: false,
     },
   },
   {

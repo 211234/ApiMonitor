@@ -1,5 +1,6 @@
 import { Auth } from "../interfaces/auth.interface";
 import { User } from "../interfaces/user.interface";
+import { MySpecificRequest } from "../interfaces/update";
 import UserModel from "../models/user";
 import { encrypt, verified } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
@@ -35,12 +36,28 @@ const loginUser = async ({ email, password }: Auth) => {
   return data;
 };
 
-const updatePerfil = async (id: string, data: User) => {
-  const responseUser = await UserModel.findOneAndUpdate({ _id: id }, data, {
+const updatePerfil = async (id: string, data: MySpecificRequest['body']) => {
+  const updateFields: Partial<User> = {}; // Definir como Partial<User>
+
+  if (data.name) {
+    updateFields.name = data.name;
+  }
+
+  if (data.email) {
+    updateFields.email = data.email;
+  }
+
+  if (data.password) {
+    const passHash = await encrypt(data.password);
+    updateFields.password = passHash;
+  }
+
+  const responseUser = await UserModel.findOneAndUpdate({ _id: id }, updateFields, {
     new: true,
   });
+
   return responseUser;
 };
 
 
-export { registerNewUser, loginUser, updatePerfil };
+export { registerNewUser, loginUser, updatePerfil, MySpecificRequest };

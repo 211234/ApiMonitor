@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { registerNewUser, loginUser, updatePerfil } from "../services/auth";
+import { registerNewUser, loginUser, updatePerfil, MySpecificRequest } from "../services/auth";
 import { handleHttp } from "../utils/error.handle";
 
 const registerCtrl = async ({ body }: Request, res: Response) => {
@@ -19,14 +19,15 @@ const loginCtrl = async ({ body }: Request, res: Response) => {
   }
 };
 
-const perfilCtrl = async ({ params, body }: Request, res: Response) => {
+const perfilCtrl = async (req: MySpecificRequest, res: Response) => {
   try {
-    const { id } = params
-    const response = await updatePerfil(id, body);
+    const { id } = req.params;
+    const response = await updatePerfil(id, req.body);
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR_UPDATE")
+    handleHttp(res, "ERROR_UPDATE");
   }
 };
 
-export { loginCtrl, registerCtrl, perfilCtrl };
+
+export { loginCtrl, registerCtrl, perfilCtrl,  MySpecificRequest};
